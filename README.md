@@ -28,7 +28,7 @@ unofficial script, to allow it, you will need to use the [Set-ExecutionPolicy] c
 Set-ExecutionPolicy Unrestricted -Scope Process
 ```
 
-### If you have **PowerShell v6 or newer**, run the following command:
+### If you have **PowerShell v6 or newer**, run the following command from the project's root:
 
 ```bash
 pwsh ./scripts/build.ps1

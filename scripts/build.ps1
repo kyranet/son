@@ -37,7 +37,7 @@ Try {
 	Step-VisualStudio -MsBuild $MsBuild -Path "$OpenAlSoftFolder\build\OpenAL.sln" -Configuration "Release"
 
 	Write-Host "Done! Library file written at "               -ForegroundColor Green -NoNewLine
-	Write-Host "$OpenAlSoftFolder\build\Release\OpenAL32.lib" -ForegroundColor Blue -NoNewLine
+	Write-Host "$OpenAlSoftFolder\build\Release\OpenAL32.lib" -ForegroundColor Blue  -NoNewLine
 	Write-Host "!"                                            -ForegroundColor Green
 
 	# Build FreeALUT
@@ -46,11 +46,23 @@ Try {
 		"-DOPENAL_LIBRARY:PATH=$OpenAlSoftFolder\build\Release\OpenAL32.lib"
 	)
 	Step-VisualStudio -MsBuild $MsBuild -Path "$FreeAlutFolder\build\Alut.sln" -Configuration "Release"
-	Copy-Item -Path "$FreeAlutFolder\build\src\Release\alut.dll" -Destination $BinaryDirectory
 
 	Write-Host "Done! Library file written at "             -ForegroundColor Green -NoNewLine
-	Write-Host "$FreeAlutFolder\build\src\Release\alut.lib" -ForegroundColor Blue -NoNewLine
-	Write-Host "! I also copied the .dll for you :)"        -ForegroundColor Green
+	Write-Host "$FreeAlutFolder\build\src\Release\alut.lib" -ForegroundColor Blue  -NoNewLine
+	Write-Host "!"                                          -ForegroundColor Green
+
+	New-Directory -Path $BinaryDirectory
+	Copy-Item -Path "$FreeAlutFolder\build\src\Release\alut.dll" -Destination "$BinaryDirectory\alut.dll"
+
+	Write-Host ""
+	Write-Host "Also copied"                                -ForegroundColor Green
+	Write-Host "<- "                                        -ForegroundColor Green -NoNewLine
+	Write-Host "$FreeAlutFolder\build\src\Release\alut.dll" -ForegroundColor Blue
+	Write-Host "-> "                                        -ForegroundColor Green -NoNewLine
+	Write-Host "$BinaryDirectory\alut.dll"                  -ForegroundColor Blue  -NoNewLine
+	Write-Host "."                                          -ForegroundColor Green
+	Write-Host ""
+	Write-Host "🚀 Your project is ready to go!"            -ForegroundColor Green -NoNewLine
 
 	Exit 0
 }
