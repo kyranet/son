@@ -1,0 +1,12 @@
+[submodule "openal-soft"]
+	path = openal-soft
+	url = git@github.com:kcat/openal-soft.git
+[submodule "freealut"]
+	path = freealut
+	url = git@github.com:vancegroup/freealut.git
+[submodule "deps/freealut"]
+	path = deps/freealut
+	url = git@github.com:vancegroup/freealut.git
+[submodule "deps/openal-soft"]
+	path = deps/openal-soft
+	url = git@github.com:kcat/openal-soft.git
